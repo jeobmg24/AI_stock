@@ -1,4 +1,5 @@
 import streamlit as st
+from create_account import show_create
 from login_page import login_page
 from dashboard import dashboard
 from stock_anal import stock_anal
@@ -10,13 +11,16 @@ def main():
     if 'logged_in' not in st.session_state:
         st.session_state.logged_in = False
         st.session_state.user = None
+        st.session_state.create_account = False
 
     # Use st.query_params to get the page parameter
     query_params = st.query_params
     page = query_params.get("page", "login")
 
     # If user is not logged in, show the login page, otherwise show the appropriate page
-    if not st.session_state.logged_in:
+    if not st.session_state.logged_in and st.session_state.create_account:
+        show_create()
+    elif not st.session_state.logged_in and not st.session_state.create_account:
         login_page()  # Always show the login page when not logged in
     else:
         if page == "dashboard":

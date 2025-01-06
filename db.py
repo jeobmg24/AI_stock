@@ -3,7 +3,6 @@ import streamlit as st
 import datetime
 import os
 def make_table():
-    print(os.getcwd())
     conn = sqlite3.connect("stock_sentiment.db")
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS stock_sentiments (

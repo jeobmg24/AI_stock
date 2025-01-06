@@ -19,10 +19,43 @@ def show_sentiment():
         #articles = get_news(input_stock)
         sentiment = stock_sentiment(input_stock)
         #st.text_area(f'"Prediction results: " {sentiment}')
-        col1, col2, col3 = st.columns(3)
-        col1.write(f"Negative: {sentiment['negative'] * 100:.2f}%")
-        col2.write(f"Neutral: {sentiment['neutral'] * 100:.2f}%")
-        col3.write(f"Positive: {sentiment['positive'] * 100:.2f}%")
+        st.markdown("""
+            <style>
+            .column-content {
+                padding: 10px;
+                text-align: center;
+                border-radius: 5px;
+            }
+            .neg {
+                background-color: maroon;
+            }
+            .neu {
+                background-color: gray;
+            }
+            .pos {
+                background-color: green;
+            }
+            </style>
+        """, unsafe_allow_html=True)
+        col1, col2, col3 = st.columns([sentiment['negative'], sentiment['neutral'], sentiment['positive']])
+        with col1:
+            st.markdown(f"""
+                        <div class="column-content neg">
+                            Negative: {sentiment['negative'] * 100:.2f}%
+                        </div>
+                        """, unsafe_allow_html=True)
+        with col2:
+            st.markdown(f"""
+                        <div class="column-content neu">
+                            Neutral: {sentiment['neutral'] * 100:.2f}%
+                        </div>
+                        """, unsafe_allow_html=True)
+        with col3:
+            st.markdown(f"""
+                        <div class="column-content pos">
+                            Positive: {sentiment['positive'] * 100:.2f}%
+                        </div>
+                        """, unsafe_allow_html=True)
         insert_sentiment(st.session_state.user, input_stock, sentiment['biggest'], sentiment['negative'], sentiment['neutral'], sentiment['positive'])
         st.write("Sentiment results have been saved to the database")
         graph = make_graph(input_stock)
@@ -115,4 +148,3 @@ def make_graph(stock):
 if __name__ == '__main__':
     #print(get_news("AAPL"))
     print(stock_sentiment("AAPL", get_news("AAPL")))
-    print(make_graph("AAPL"))
