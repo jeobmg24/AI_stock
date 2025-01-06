@@ -21,6 +21,19 @@ searched up this stock. Finally, your search results will be saved to the databa
 
 On the 'check database' tab, you can check all the results of searches you have queried. It will show the stock searched, the overall sentiment, and the date searched
 
+## 3. What I learned
+From this project, I both learned and also reinforced many of my skills. Some of the new skills I learned are:
+* How to build an AI model, train it, and feed it with new data
+* Using streamlit, navigating its controls and widgets
+* Using sqllite3 for Python
+
+Some skills that I reinforced were:
+
+* Using great coding practices in Python
+* Using SQL and queries to the database
+* Using APIs to get data from a third party application
+* Using documentation to figure out new libraries
+
 
 ### What I hope to add
 Though I felt this project was good enough to post on GitHub, I do not consider this project 
